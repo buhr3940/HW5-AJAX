@@ -1,5 +1,5 @@
 <?php
-include once "settings.php";
+include once ('settings.php');
 if($_SESSION['user']){
 	header("Location:index.php");
 }
