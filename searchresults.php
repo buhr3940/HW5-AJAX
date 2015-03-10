@@ -2,6 +2,12 @@
   include_once('loggedin.php');
   include_once('settings.php');
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
 <ol>
   <?php       
     $name = $_GET['nameSearch'];
@@ -14,4 +20,6 @@
     mysql_close($con);
 ?>
 </ol>
+</body>
+</html>
 

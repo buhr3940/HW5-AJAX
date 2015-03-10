@@ -19,8 +19,9 @@ session_start();
     Password: <input type="password" name="password" id="password"/><br /> 
     <input type="submit" value="Submit"/> 
 </form>
-<!--a href="logout.php">Logout</a--> 
-
-<!--a href="search.php">Search</a--> 
+<a href="search.php">Search</a> 
+<a href="profile.php">Profile</a>
+<a href="allusers.php">All Users</a>
+<a href="logout.php">Logout</a> 
 </body>
 </html>
