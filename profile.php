@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <?php
-include navbar.php
-include once ('loggedin.php');
-include once ('settings.php');
-/* These are our valid username and passwords */
-
-$_REQUEST($name);
-$sql = "SELECT * FROM messages WHERE usernamemsg='$name'ORDER by date";
-$result = $conn->query($sql);
+include_once ('loggedin.php');
+include_once ('settings.php');
+include 'navbar.php';
 ?>
-
 <head>
 	<title>Profile</title>
 </head>
 
 <body>
-<h1>Message Board (sorted by date) </h1> <br />
- 
+<h1> Your Profile <h1> </br>
 <?php
+$_REQUEST($name);
+$query = "SELECT * FROM users WHERE name='$name'ORDER by date" limit 1;
+$result=mysqli_query($link,$query);
+if ($result=mysqli_query($link,$query))
+  {
+  // Fetch one and one row
+  while ($row=mysqli_fetch_row($result))
+    {
+    printf ("%s (%s)\n",$row[0],$row[1]);
+    }
+  // Free result set
+  mysqli_free_result($result);
+}
+?>
+<br>
+<h2>Message Board (sorted by date) </h2> <br/>
+<?php
+$query = "SELECT * FROM messages WHERE usernamemsg='$name'ORDER by date";
+$result=mysqli_query($link,$query);
 if $result == NULL
 { 
 	echo "You have no messages."
 } 		else 
-			while($row=$result->fetchArray()) 
+			while($row = mysqli_fetch_array($result)) 
 { 
 ?>
 				<table width="90%" border="1" cellpadding="0" cellspacing="0" bordercolor="#EFEFEF">
@@ -33,15 +45,14 @@ if $result == NULL
 			    <td>Message</td>
 			 </tr>
 	
-		    <?php while($row=$result->fetchArray()) { ?>
+		    <?php while($row = mysqli_fetch_array($result))?>
 				<tr>
-				    <td><?php echo $row['messageid']; ?></td>
-				    <td><?php echo $row['usernamemsg']; ?></td>
-				    <td><?php echo $row['date']; ?></td>
-				    <td><?php echo $row['message']; ?></td>
+				    <td><?php echo $row['messageid'];?></td>
+				    <td><?php echo $row['usernamemsg'];?></td>
+				    <td><?php echo $row['date'];?></td>
+				    <td><?php echo $row['message'];?></td>
 				</tr>
-		    <?php?>
-	
+		    	
 	    </table>
      
 }
@@ -73,32 +84,29 @@ if $result == NULL
 		</div>
 	</div>	
 
-<?php
+<?$
 	if !(message==NULL){
-		$db = new mySQL('llhosts_ericbuhr');
-		$insert_command = "INSERT INTO messsages (usernamemsg, date, message) VALUES ('$usernamemsg', '$date', '$message')";
-			echo $insert_command . "<br />\n";
-		    $db->exec($insert_command);
+		mysqli_query ($link, "INSERT INTO messsages ('usernamemsg', 'date', 'message') VALUES ('$usernamemsg', '$date', '$message')") or die(mysqli_error($link));
+		echo "<p>Message has been posted successfully.";
 ?>
 <h2> List of friends<h2>
-	<?php
-	$sql = "SELECT * FROM relationships WHERE usernamerel='$name'ORDER by friendname";
-	$result = $conn->query($sql);
-		while($row=$result->fetchArray()) {
-						
+<?php
+	$query = "SELECT * FROM relationships WHERE usernamerel='$name'ORDER by friendname";
+	$result=mysqli_query($link,$query);
+		while($row = mysqli_fetch_array($result)) {
+?>						
 				<tr>
 				    <td><?php echo "<a href=friendmsg.php>$row['friendname']</a>";?></td>
 				</tr>
 				tr>
 			    <td><input type="button" value="removefriend" name="removefriend" {onclick:"removefriend"=true}> Remove as Friend </input></td>
 				</tr>
-	<?php
+<?php
 	if removefriend==true {
 		$friendname = $row['friendname'];
 		$db = new MySQL(llhosts_ericbuhr.sql);
-		$delete_command = "DELETE FROM relationships where friendname = '$friendname'";
-		$db->exec($delete_command);
-		echo "You're friend has been removed.";
+		mysqli_query ($link, "DELETE FROM relationships * where friendname = '$friendname'") or die(mysqli_error($link));
+		echo "Your friend has been removed.";
     	echo "<br/>";
 }
 ?>

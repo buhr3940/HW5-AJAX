@@ -1,13 +1,14 @@
 <?php
 include_once('loggedin.php');
 include_once('settings.php');
+include 'navbar.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Search</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+
 <script type="text/javascript">
   function handrolled(){
     var nameSearchJS = document.getElementById('nameSearch').value;
@@ -24,25 +25,20 @@ include_once('settings.php');
     xhr.send(null);
 
   }
-  function jQuerySearch() {
 
-    $(".jQuerySearch").click(jQuerySearch()); {
-        // hetting the value that user typed
-        var searchString    = $("#nameSearch").val();
-        // forming the queryString
-        var data            = 'resultshere='+ searchString;
-        
-        // if searchString is not empty
-        if(searchString) {
-            // ajax call
-			$.ajax('GET','searchresults.php?nameSearch='+ jQuerySearch,true);
-            }    
-        }
-        return false;
-    }
+ function jqueryroller(){ 
+      	$.ajax({ 
+      	type: 'GET', 
+ 	url: 'searchresults.php', 
+ 	data: { nameSearch: $("#nameSearch").val()}, 
+ 	dataType: 'text', 
+ 	success: function(data){ 
+ 	$('#resultshere').html(data); 
+ 		} 
+ 	}); 
+ }   		 
 
 </script>
-
 </head>
 
 <body>
@@ -57,9 +53,11 @@ include_once('settings.php');
 
       </label>
         <input type="button" value="JSSearch" onclick="handrolled();"/>
-		<input type="button" value="jQuerySearch" onclick="jQuerySearch();"/>
+		<input type="button" value="jqueryroller" onclick="jqueryroller();"/>
     </form>
   </div> 
     <div id="resultshere" ></div>
 </body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
 </html>

@@ -11,13 +11,14 @@
 <ol>
   <?php       
     $name = $_GET['nameSearch'];
-    $result = mysql_query("SELECT * FROM users where name like '%$name%' limit 20");
-    while($row = mysql_fetch_array($result))
+    $query = "SELECT * FROM users where name like '%$name%' limit 20" or die("Error in the consult.." . mysqli_error($link));
+	$result = mysqli_query($link, $query);
+    while($row = mysqli_fetch_array($result))
     {
       echo'<li>'.$row['name']."-".$row['username'];
       echo"</li>";
     }     
-    mysql_close($con);
+    mysqli_close($link);
 ?>
 </ol>
 </body>

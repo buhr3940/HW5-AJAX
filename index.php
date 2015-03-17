@@ -1,11 +1,9 @@
 <?php
-include navbar.php
-include once('loggedin.php');
-
-session_start();
+include_once('loggedin.php');
 	if(!isset($_SESSION['user'])) {
-		header("Location:login.php");
-		{
+		header("Location: login.php");
+		}
+include_once('navbar.php');
 ?>
 <!DOCTYPE html>
 <head>
@@ -19,9 +17,5 @@ session_start();
     Password: <input type="password" name="password" id="password"/><br /> 
     <input type="submit" value="Submit"/> 
 </form>
-<a href="search.php">Search</a> 
-<a href="profile.php">Profile</a>
-<a href="allusers.php">All Users</a>
-<a href="logout.php">Logout</a> 
 </body>
 </html>

@@ -17,10 +17,11 @@ li {
 </head>
 <body>
 <ul>
+  <li><a href="index.php">Home</a></li>
+  <li><a href="search.php">Search</a></li>
   <li><a href="profile.php">Profile</a></li>
-  <li><a href="allusers.php">All users</a></li>
-  <li><a href="search.php">Search</a><li>
+  <li><a href="allusers.php">All Users</a</li>
   <li><a href="logout.php">Logout</a></li>
-</ul>
+ </ul>
 </body>
 </html>

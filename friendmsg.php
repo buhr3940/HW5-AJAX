@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <?php
-include navbar.php
-include once ('loggedin.php');
-include once ('settings.php');
+include_once ('loggedin.php');
+include_once ('settings.php');
+include 'navbar.php';
 $user=$_POST[user];
-$sql = "SELECT * FROM messages AND * FROM relationships WHERE usernamemsg=friendname AND usernamerel='$user'";
-$result = $conn->query($sql);
+$query = "SELECT * FROM messages AND * FROM relationships WHERE usernamemsg=friendname AND usernamerel='$user'";
+$result=mysqli_query($link,$query);
 ?>
 <head>
 	<title>Friend's messages</title>
@@ -14,7 +14,7 @@ $result = $conn->query($sql);
 <body>
 <h1>Friend's messages </h1><br />
 <?php
-while($row=$result->fetchArray()) {
+while($row = mysqli_fetch_array($result)) {
 	if $result == NULL
 	echo "Your friend has no messages."
 } 		
