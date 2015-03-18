@@ -1,4 +1,5 @@
 <?php
+session_start();
 $hostname_db = "localhost";
 $database_db = "llhosts_ericbuhr";
 $username_db = "llhosts_ericbuhr";

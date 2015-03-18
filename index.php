@@ -3,7 +3,7 @@ include_once('loggedin.php');
 	if(!isset($_SESSION['user'])) {
 		header("Location: login.php");
 		}
-include_once('navbar.php');
+include 'navbar.php';
 ?>
 <!DOCTYPE html>
 <head>
